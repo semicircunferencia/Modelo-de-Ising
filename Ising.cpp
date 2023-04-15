@@ -35,6 +35,8 @@ using namespace std;
 
 long int semillatiempo();
 void inicializarespines(int espines[][N], int caso, gsl_rng *tau);
+void iteracion(int espines[][N], double temp, gsl_rng *tau);
+double incEnergia(int espines[][N], int i, int j);
 
 /**************************************************** FUNCIÓN PRINCIPAL ****************************************************/
 int main(void) {
