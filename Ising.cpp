@@ -139,6 +139,8 @@ void iteracion(int espines[][N], double temp, gsl_rng *tau) {
     numerito=gsl_rng_uniform(tau);
     if(numerito<p) espines[i][j]=-espines[i][j];
 
+    return;
+
 }
 
 /*Función incEnergia. Calcula el incremento de energía que supondría cambiar el espín (i,j) por su opuesto.
