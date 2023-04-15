@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 # Set the name of the file to read
-filename = "colores.dat"
-N=3
+filename = "Espines.dat"
+N=5
 
 # Load the entire file as a string
 with open(filename, 'r') as f:
@@ -61,7 +61,8 @@ else:
     # Define the update function for the animation
     def update(time_step):
         # Load the data for this time step into a numpy array
-        data = np.fromstring(collection_list[time_step], sep=' ').reshape((N, N))
+        data = np.fromstring(collection_list[time_step], sep=' ')
+        data = data.reshape((N,N))
 
         # Loop over each element in the data array and plot a dot
         for i in range(N):
