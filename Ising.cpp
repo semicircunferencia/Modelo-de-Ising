@@ -141,7 +141,7 @@ void iteracion(int espines[][N], double temp, gsl_rng *tau) {
 
 }
 
-/*Función incEnergia. Calcula el incremento de energía que supondría cambiar el espín (n,m) por su opuesto.
+/*Función incEnergia. Calcula el incremento de energía que supondría cambiar el espín (i,j) por su opuesto.
 Tiene en cuenta las condiciones periódicas*/
 double incEnergia(int espines[][N], int i, int j) {
 
