@@ -38,7 +38,7 @@ if len(collection_list) == 1:
             ax.scatter(j, i, c=dot_color, s=100)
 
     # Save the plot to a file
-    plt.savefig('red.pdf')
+    plt.savefig('espines.pdf')
 
 # If there are multiple collections, create an animation
 else:
@@ -77,4 +77,4 @@ else:
     anim = animation.FuncAnimation(fig, update, frames=len(collection_list), interval=1000)
 
     # Save the animation to a file using FFMPEG
-    anim.save('evolucion_red.mp4', writer='ffmpeg')   
+    anim.save('evolucion_espines.mp4', writer='ffmpeg')   
