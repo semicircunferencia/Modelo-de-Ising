@@ -35,7 +35,7 @@ using namespace std;
 
 long int semillatiempo();
 void inicializarespines(int espines[][N], int caso, gsl_rng *tau);
-void iteracion(int espines[][N], double temp, bool& alguncambio, gsl_rng *tau);
+void iteracion(int espines[][N], double temp, gsl_rng *tau);
 double incEnergia(int espines[][N], int i, int j);
 
 /**************************************************** FUNCIÓN PRINCIPAL ****************************************************/
@@ -67,37 +67,36 @@ int main(void) {
 
     // Abro el fichero donde escribo los espines. Imprimo los primeros
     ofstream fichero;
-    fichero.open("Espines.dat");
+    fichero.open("ising_data.dat");
     for(int i=0; i<N; i++) {
-        for(int j=0; j<N; j++) {
-            fichero << espines[i][j] << " ";
+        for(int j=0; j<N-1; j++) {
+            fichero << espines[i][j] << ",";
         }
 
-        fichero << "\n";
+        fichero << espines[i][N-1] << "\n";
     }
     
 
     // Variables para el proceso de iteración
     int pasos = pasosMC*N*N;
-    bool alguncambio = false;
 
     // Itero en el tiempo
-    for(int k=0; k<pasos; k++) {
+    for(int k=1; k<=pasos; k++) {
 
         // Intento cambiar un espín
-        iteracion(espines, temp, alguncambio, tau);
+        iteracion(espines, temp, tau);
 
-        // Imprimo los espines en el archivo, pero solo si ha cambiado alguno
-        if(alguncambio) {
+        // Imprimo los espines en el archivo, pero solo cada paso de Monte Carlo
+        if(k%(N*N)==0) {
 
             fichero << "\n";
             
             for(int i=0; i<N; i++) {
-                for(int j=0; j<N; j++) {
-                    fichero << espines[i][j] << " ";
+                for(int j=0; j<N-1; j++) {
+                    fichero << espines[i][j] << ",";
                 }
 
-                fichero << "\n";
+                fichero << espines[i][N-1] << "\n";
             }
 
         }
@@ -153,7 +152,7 @@ void inicializarespines(int espines[][N], int caso, gsl_rng *tau) {
 
 /*Función iteracion. Es el núcleo del programa. Realiza los pasos que determinan si se cambia de signo algún
 espín escogido aleatoriamente*/
-void iteracion(int espines[][N], double temp, bool& alguncambio, gsl_rng *tau) {
+void iteracion(int espines[][N], double temp, gsl_rng *tau) {
 
     double p;
     double numerito;
@@ -171,12 +170,7 @@ void iteracion(int espines[][N], double temp, bool& alguncambio, gsl_rng *tau) {
     /*Calculo un número aleatorio entre 0 y 1. Si es <p, cambio el signo del espín. Utilizo el mismo double numerito
     que ahora no sirve de nada más*/
     numerito=gsl_rng_uniform(tau);
-    if(numerito<p) {
-        espines[i][j]=-espines[i][j];
-        alguncambio=true;
-    }
-
-    else alguncambio=false;
+    if(numerito<p) espines[i][j]=-espines[i][j];
 
     return;
 
