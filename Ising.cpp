@@ -29,7 +29,7 @@ sumar el incremento de energía). CONDICIONES DE CONTORNO PERIÓDICAS
 #include <sys/time.h> // Tiempo
 
 // El número de espines es N^2
-#define N 5
+#define N 100
 
 using namespace std;
 
