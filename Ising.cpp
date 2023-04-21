@@ -162,7 +162,7 @@ void iteracion(int espines[][N], double temp, gsl_rng *tau) {
     int j=gsl_rng_uniform_int(tau, N);
 
     // Calculo la p correspondiente
-    numerito=exp(incEnergia(espines, i, j)/temp);
+    numerito=exp(-incEnergia(espines, i, j)/temp);
     
     if(numerito>=1) p=1;
     else p=numerito;
@@ -186,5 +186,5 @@ double incEnergia(int espines[][N], int i, int j) {
     int jmas1=((j+1)%N + N)%N;
     int jmenos1=((j-1)%N + N)%N;
 
-    return -2*espines[i][j]*(espines[imas1][j]+espines[imenos1][j]+espines[i][jmas1]+espines[i][jmenos1]);
+    return 2*espines[i][j]*(espines[imas1][j]+espines[imenos1][j]+espines[i][jmas1]+espines[i][jmenos1]);
 }
