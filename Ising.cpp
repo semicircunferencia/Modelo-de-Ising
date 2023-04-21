@@ -13,7 +13,7 @@ o todos iguales
 
 1) Elegir un punto al azar de la red (n,m)
 
-2) Evaluar p=min(1, exp(DeltaE/T)), siendo DeltaE=-2*s(n,m)[s(n+1,m)+s(n-1,m)+s(n,m+1)+s(n,m-1)] (es decir,
+2) Evaluar p=min(1, exp(-DeltaE/T)), siendo DeltaE=2*s(n,m)[s(n+1,m)+s(n-1,m)+s(n,m+1)+s(n,m-1)] (es decir,
 sumar el incremento de energía). CONDICIONES DE CONTORNO PERIÓDICAS
 
 3) Generar un número aleatorio entre 0 y 1. Si es menor que p, cambiar el signo del espín
